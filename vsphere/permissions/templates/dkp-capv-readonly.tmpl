@@ -1,0 +1,9 @@
+${ /* role to be applied at folder and datastore level. 
+      Giving required permissions for DKP to clone an image */"" }
+
+Datastore.AllocateSpace ${ /* without this permission clones fail under certain conditions */"" }
+VApp.Clone
+VApp.Export
+VirtualMachine.Provisioning.Clone
+VirtualMachine.Provisioning.CloneTemplate
+VirtualMachine.Provisioning.DeployTemplate

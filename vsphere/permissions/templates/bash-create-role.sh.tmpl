@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# create role if not found
+govc role.ls ${role_name} >/dev/null 2>&1 || govc role.create ${role_name}
+
+%{ if length(role_privileges) > 0 }
+cat <<EOR | govc role.update ${role_name} $(</dev/stdin)
+%{ for permission in role_privileges ~}
+${permission}
+%{ endfor ~}
+EOR
+%{ else ~}
+# readonly role no permissions to assign
+%{ endif ~}
